@@ -24,4 +24,12 @@ public class FelineTest {
 
         Assert.assertEquals(expectedFood, feline.eatMeat());
     }
+
+    // Проверка, что getKittens() без параметров возвращает одного котёнка.
+    @Test
+    public void getKittensWithoutArgumentReturnsOne() {
+        Feline feline = new Feline();
+
+        Assert.assertEquals(1, feline.getKittens());
+    }
 }
