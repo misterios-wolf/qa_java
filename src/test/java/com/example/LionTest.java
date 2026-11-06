@@ -13,12 +13,12 @@ import java.util.List;
 public class LionTest {
 
     @Mock
-    private Predator predator;
+    private Feline feline;
 
     // Проверка, что у льва-самца есть грива
     @Test
     public void doesHaveManeReturnsTrueForMale() throws Exception {
-        Lion lion = new Lion("Самец", predator);
+        Lion lion = new Lion("Самец", feline);
 
         Assert.assertTrue(lion.doesHaveMane());
     }
@@ -26,7 +26,7 @@ public class LionTest {
     // Проверка, что у льва-самки нет гривы
     @Test
     public void doesHaveManeReturnsFalseForFemale() throws Exception {
-        Lion lion = new Lion("Самка", predator);
+        Lion lion = new Lion("Самка", feline);
 
         Assert.assertFalse(lion.doesHaveMane());
     }
@@ -34,32 +34,32 @@ public class LionTest {
     // Проверка, что при передаче некорректного значения выбрасывается исключение
     @Test(expected = Exception.class)
     public void constructorThrowsExceptionForInvalidSex() throws Exception {
-        new Lion("Неизвестно", predator);
+        new Lion("Неизвестно", feline);
     }
 
-    // Проверка, что метод getKittens() возвращает количество котят от Predator
+    // Проверка, что метод getKittens() возвращает количество котят от Feline
     @Test
     public void getKittensReturnsKittensCountFromPredator() throws Exception {
-        Mockito.when(predator.getKittens()).thenReturn(5);
+        Mockito.when(feline.getKittens()).thenReturn(5);
 
-        Lion lion = new Lion("Самец", predator);
+        Lion lion = new Lion("Самец", feline);
 
         Assert.assertEquals(5, lion.getKittens());
 
-        Mockito.verify(predator).getKittens();
+        Mockito.verify(feline).getKittens();
     }
 
-    // Проверка, что метод getFood() возвращает список еды от Predator
+    // Проверка, что метод getFood() возвращает список еды от Feline
     @Test
     public void getFoodReturnsFoodFromPredator() throws Exception {
         List<String> expectedFood = List.of("Животные", "Птицы", "Рыба");
 
-        Mockito.when(predator.eatMeat()).thenReturn(expectedFood);
+        Mockito.when(feline.eatMeat()).thenReturn(expectedFood);
 
-        Lion lion = new Lion("Самец", predator);
+        Lion lion = new Lion("Самец", feline);
 
         Assert.assertEquals(expectedFood, lion.getFood());
 
-        Mockito.verify(predator).eatMeat();
+        Mockito.verify(feline).eatMeat();
     }
 }
